@@ -3,7 +3,23 @@
 /**
  * Dependency injection manager
  */
-interface Ioc extends Resolver {
+abstract class Ioc implements Resolver {
+  /**
+   * @var object  Singleton instance
+   */
+  private static $_instance = null;
+  
+  /**
+   * Accessor for singleton, instantiates if necessary
+   */
+  public static function instance() {
+    if(self::$_instance == null) {
+      self::$_instance = new static;
+    }
+    
+    return self::$_instance;
+  }
+  
   /**
    * Binds a class to an alias
    * 
@@ -16,12 +32,12 @@ interface Ioc extends Resolver {
    *                                                  <li>A callable that returns an instance of a class</li>
    *                                              </ul>
    */
-  public function bind($alias, $binding);
+  public abstract function bind($alias, $binding);
   
   /**
    * Adds a custom resolver to the IoC container
    * 
    * @param   Resolver  $resolver The resolver to add
    */
-  public function addResolver(Resolver $resolver);
+  public abstract function addResolver(Resolver $resolver);
 }
