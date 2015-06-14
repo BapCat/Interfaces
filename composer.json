@@ -1,0 +1,22 @@
+{
+  "name": "bapcat/interfaces",
+  "description": "",
+  "license": "GPLv3",
+  "homepage": "http://github.com/BapCat/Interfaces",
+  "keywords": ["Interface"],
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Corey Frenette",
+      "email": "corey@narwhunderful.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "BapCat\\Interfaces\\": "src/"
+    }
+  }
+}
