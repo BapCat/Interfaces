@@ -3,5 +3,5 @@
 use BapCat\Interfaces\Ioc\Ioc;
 
 interface ServiceProvider {
-  public function register(Ioc $ioc);
+  public function register();
 }
