@@ -1,4 +1,4 @@
-<?php namespace BapCat\Contract;
+<?php namespace BapCat\Interfaces\Services;
 
 use BapCat\Interfaces\Ioc\Ioc;
 
