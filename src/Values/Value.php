@@ -1,5 +1,13 @@
 <?php namespace BapCat\Interfaces\Values;
 
-interface Value {
-  public function value();
+abstract class Value {
+  private $value = null;
+  
+  protected function __construct($value) {
+    $this->value = $value;
+  }
+  
+  public function value() {
+    return $this->value;
+  }
 }
