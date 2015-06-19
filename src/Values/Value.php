@@ -1,6 +1,8 @@
 <?php namespace BapCat\Interfaces\Values;
 
 abstract class Value {
+  use PropifierTrait;
+  
   private $value = null;
   
   public function __construct($value) {
@@ -8,9 +10,9 @@ abstract class Value {
     $this->value = $value;
   }
   
-  public function value() {
+  protected abstract function validate($value);
+  
+  protected function value() {
     return $this->value;
   }
-  
-  protected abstract function validate($value);
 }
