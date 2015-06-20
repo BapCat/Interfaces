@@ -1,8 +1,6 @@
 <?php namespace BapCat\Interfaces\Values;
 
 abstract class Value {
-  use PropifierTrait;
-  
   private $value = null;
   
   public function __construct($value) {
