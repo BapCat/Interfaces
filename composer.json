@@ -13,7 +13,8 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "icanboogie/inflector": "dev-master"
+    "icanboogie/inflector": "dev-master",
+    "bapcat/propifier": "dev-master"
   },
   "autoload": {
     "psr-4": {
