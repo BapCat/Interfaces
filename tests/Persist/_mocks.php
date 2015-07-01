@@ -1,10 +1,11 @@
 <?php
 
 use BapCat\Interfaces\Persist\Driver;
+use BapCat\Interfaces\Persist\File;
 
-function mockFileDriver(PHPUnit_Framework_TestCase $testcase) {
+function mockFileDriver(PHPUnit_Framework_TestCase $testcase, $filename) {
   $driver = mockDriver($testcase);
-  $file = mockFile($testcase);
+  $file = mockFile($testcase, $driver, $filename);
   
   $driver
     ->method('isFile')
@@ -21,9 +22,9 @@ function mockFileDriver(PHPUnit_Framework_TestCase $testcase) {
   return $driver;
 }
 
-function mockDirDriver(PHPUnit_Framework_TestCase $testcase) {
+function mockDirDriver(PHPUnit_Framework_TestCase $testcase, $filename) {
   $driver = mockDriver($testcase);
-  $dir = mockDir($testcase);
+  $dir = mockDir($testcase, $driver, $filename);
   
   $driver
     ->method('isFile')
@@ -41,12 +42,17 @@ function mockDirDriver(PHPUnit_Framework_TestCase $testcase) {
 }
 
 function mockDriver(PHPUnit_Framework_TestCase $testcase) {
-  $driver =  $testcase->getMockBuilder('BapCat\Interfaces\Persist\Driver')
+  $driver =  $testcase
+    ->getMockBuilder('BapCat\Interfaces\Persist\Driver')
     ->getMockForAbstractClass();
   
   $driver
     ->method('exists')
     ->willReturn(true);
+  
+  $driver
+    ->method('size')
+    ->willReturn(100);
   
   $driver
     ->method('isLink')
@@ -63,34 +69,43 @@ function mockDriver(PHPUnit_Framework_TestCase $testcase) {
   return $driver;
 }
 
-function mockPath(PHPUnit_Framework_TestCase $testcase, Driver $driver) {
-  $path = $testcase->getMockForAbstractClass(
-    'BapCat\Interfaces\Persist\Path',
-    [
-      $driver,
-      ''
-    ]
-  );
-  
+function mockPath(PHPUnit_Framework_TestCase $testcase, Driver $driver, $filename) {
+  $path = $testcase->getMockForAbstractClass('BapCat\Interfaces\Persist\Path', [$driver, $filename]);
   return $path;
 }
 
-function mockFile(PHPUnit_Framework_TestCase $testcase) {
-  $file = $testcase->getMockBuilder('BapCat\Interfaces\Persist\File')
-    ->disableOriginalConstructor()
-    ->getMockForAbstractClass();
-  
+function mockFile(PHPUnit_Framework_TestCase $testcase, Driver $driver, $filename) {
+  $file = $testcase->getMockForAbstractClass('BapCat\Interfaces\Persist\File', [$driver, $filename]);
   return $file;
 }
 
-function mockDir(PHPUnit_Framework_TestCase $testcase) {
-  $dir = $testcase->getMockBuilder('BapCat\Interfaces\Persist\Directory')
-    ->disableOriginalConstructor()
-    ->getMockForAbstractClass();
+function mockDir(PHPUnit_Framework_TestCase $testcase, Driver $driver, $filename) {
+  $dir = $testcase->getMockForAbstractClass('BapCat\Interfaces\Persist\Directory', [$driver, $filename]);
   
   $dir
     ->method('loadChildren')
-    ->willReturn([]);
+    ->willReturn(['a', 'b']);
   
   return $dir;
+}
+
+function mockFileInputStream(PHPUnit_Framework_TestCase $testcase, File $file, $length) {
+  $in = $testcase->getMockForAbstractClass('BapCat\Interfaces\Persist\FileInputStream', [$file]);
+  
+  $remaining = $length;
+  
+  $in
+    ->method('getHasMore')
+    ->will($testcase->returnCallback(function() use(&$remaining) {
+      return $remaining > 0;
+    }));
+  
+  $in
+    ->method('read')
+    ->will($testcase->returnCallback(function($length = 0) use(&$remaining) {
+      $remaining -= $length;
+      return openssl_random_pseudo_bytes($length);
+    }));
+  
+  return $in;
 }

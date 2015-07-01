@@ -2,21 +2,21 @@
 
 require_once __DIR__ . '/_mocks.php';
 
-use BapCat\Interfaces\Persist\Driver;
-
 class DriverTest extends PHPUnit_Framework_TestCase {
   public function testGetFile() {
-    $driver = mockFileDriver($this);
+    $filename = 'test';
+    $driver = mockFileDriver($this, $filename);
     
-    $dir = $driver->get('Test');
+    $dir = $driver->get($filename);
     
     $this->assertInstanceOf('BapCat\Interfaces\Persist\File', $dir);
   }
   
   public function testGetDirectory() {
-    $driver = mockDirDriver($this);
+    $dirname = 'test';
+    $driver = mockDirDriver($this, $dirname);
     
-    $dir = $driver->get('Test');
+    $dir = $driver->get($dirname);
     
     $this->assertInstanceOf('BapCat\Interfaces\Persist\Directory', $dir);
   }

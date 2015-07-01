@@ -14,6 +14,7 @@ abstract class Driver {
   protected abstract function instantiateDir($path);
   
   public abstract function exists($path);
+  public abstract function size($path);
   public abstract function isDir($path);
   public abstract function isFile($path);
   public abstract function isLink($path);

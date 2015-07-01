@@ -13,6 +13,14 @@ abstract class Path {
     $this->path   = $path;
   }
   
+  protected function getDriver() {
+    return $this->driver;
+  }
+  
+  protected function getPath() {
+    return $this->path;
+  }
+  
   protected function getExists() {
     return $this->driver->exists($this->path);
   }

@@ -9,8 +9,4 @@ abstract class Directory extends Path implements IteratorAggregate {
   protected function getChildren() {
     return $this->loadChildren();
   }
-  
-  public function getIterator() {
-    return new ArrayIterator($this->loadChildren());
-  }
 }
