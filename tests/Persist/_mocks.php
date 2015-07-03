@@ -41,14 +41,14 @@ function mockDirDriver(PHPUnit_Framework_TestCase $testcase, $filename) {
   return $driver;
 }
 
-function mockDriver(PHPUnit_Framework_TestCase $testcase) {
+function mockDriver(PHPUnit_Framework_TestCase $testcase, $exists = true) {
   $driver =  $testcase
     ->getMockBuilder('BapCat\Interfaces\Persist\Driver')
     ->getMockForAbstractClass();
   
   $driver
     ->method('exists')
-    ->willReturn(true);
+    ->willReturn($exists);
   
   $driver
     ->method('size')
@@ -105,6 +105,18 @@ function mockFileInputStream(PHPUnit_Framework_TestCase $testcase, File $file, $
     ->will($testcase->returnCallback(function($length = 0) use(&$remaining) {
       $remaining -= $length;
       return openssl_random_pseudo_bytes($length);
+    }));
+  
+  return $in;
+}
+
+function mockFileOutputStream(PHPUnit_Framework_TestCase $testcase, File $file) {
+  $in = $testcase->getMockForAbstractClass('BapCat\Interfaces\Persist\FileOutputStream', [$file]);
+  
+  $in
+    ->method('write')
+    ->will($testcase->returnCallback(function($data) {
+      return strlen($data);
     }));
   
   return $in;

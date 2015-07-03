@@ -3,7 +3,7 @@
 use BapCat\Interfaces\Exceptions\PathNotFoundException;
 use BapCat\Propifier\PropifierTrait;
 
-abstract class FileInputStream {
+abstract class FileOutputStream {
   use PropifierTrait;
   
   private $file;
@@ -20,6 +20,5 @@ abstract class FileInputStream {
     return $this->file;
   }
   
-  protected abstract function getHasMore();
-  public abstract function read($length = 0);
+  public abstract function write($data);
 }

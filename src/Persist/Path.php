@@ -7,10 +7,13 @@ abstract class Path {
   
   private $driver;
   private $path;
+  private $name;
   
   public function __construct(Driver $driver, $path) {
     $this->driver = $driver;
     $this->path   = $path;
+    
+    $this->name = basename($path);
   }
   
   protected function getDriver() {
@@ -19,6 +22,10 @@ abstract class Path {
   
   protected function getPath() {
     return $this->path;
+  }
+  
+  protected function getName() {
+    return $this->name;
   }
   
   protected function getExists() {
