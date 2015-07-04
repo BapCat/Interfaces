@@ -1,7 +1,11 @@
 <?php namespace BapCat\Interfaces\Persist;
 
+use BapCat\Propifier\PropifierTrait;
+
 //@TODO should use a value object
 abstract class Driver {
+  use PropifierTrait;
+  
   public function get($path) {
     if($this->isDir($path)) {
       return $this->instantiateDir($path);
