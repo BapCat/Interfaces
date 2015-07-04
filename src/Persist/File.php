@@ -2,6 +2,6 @@
 
 abstract class File extends Path {
   protected function getSize() {
-    return $this->driver->size($this->path);
+    return $this->driver->size($this);
   }
 }

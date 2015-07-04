@@ -13,11 +13,13 @@ abstract class Driver {
   protected abstract function instantiateFile($path);
   protected abstract function instantiateDir($path);
   
-  public abstract function exists($path);
-  public abstract function size($path);
   public abstract function isDir($path);
   public abstract function isFile($path);
-  public abstract function isLink($path);
-  public abstract function isReadable($path);
-  public abstract function isWritable($path);
+  
+  public abstract function exists(Path $path);
+  public abstract function isLink(Path $path);
+  public abstract function isReadable(Path $path);
+  public abstract function isWritable(Path $path);
+  
+  public abstract function size(File $file);
 }

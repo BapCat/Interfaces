@@ -16,6 +16,11 @@ abstract class Path {
     $this->name = basename($path);
   }
   
+  public function __toString() {
+    $class = basename(get_class());
+    return "{$class}[{$this->path}]";
+  }
+  
   protected function getDriver() {
     return $this->driver;
   }
@@ -29,18 +34,18 @@ abstract class Path {
   }
   
   protected function getExists() {
-    return $this->driver->exists($this->path);
+    return $this->driver->exists($this);
   }
   
   protected function getIsLink() {
-    return $this->driver->isLink($this->path);
+    return $this->driver->isLink($this);
   }
   
   protected function getIsReadable() {
-    return $this->driver->isReadable($this->path);
+    return $this->driver->isReadable($this);
   }
   
   protected function getIsWritable() {
-    return $this->driver->isWritable($this->path);
+    return $this->driver->isWritable($this);
   }
 }

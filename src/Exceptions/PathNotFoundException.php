@@ -7,8 +7,8 @@ use Exception;
 class PathNotFoundException extends Exception {
   private $path;
   
-  public function __construct(Path $path) {
-    parent::__construct("[{$path->path}] does not exist.");
+  public function __construct($path) {
+    parent::__construct("[$path] does not exist.");
     $this->path = $path;
   }
   

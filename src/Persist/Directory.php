@@ -3,7 +3,7 @@
 use ArrayIterator;
 use IteratorAggregate;
 
-abstract class Directory extends Path implements IteratorAggregate {
+abstract class Directory extends Path {
   protected abstract function loadChildren();
   
   protected function getChildren() {

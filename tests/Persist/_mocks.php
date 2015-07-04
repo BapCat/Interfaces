@@ -42,7 +42,7 @@ function mockDirDriver(PHPUnit_Framework_TestCase $testcase, $filename) {
 }
 
 function mockDriver(PHPUnit_Framework_TestCase $testcase, $exists = true) {
-  $driver =  $testcase
+  $driver = $testcase
     ->getMockBuilder('BapCat\Interfaces\Persist\Driver')
     ->getMockForAbstractClass();
   
