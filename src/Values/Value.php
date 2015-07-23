@@ -4,4 +4,6 @@ use BapCat\Propifier\PropifierTrait;
 
 abstract class Value {
   use PropifierTrait;
+  
+  protected abstract function getRaw();
 }
