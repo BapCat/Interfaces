@@ -48,4 +48,8 @@ abstract class Path {
   protected function getIsWritable() {
     return $this->driver->isWritable($this);
   }
+  
+  protected function getModified() {
+    return $this->driver->modified($this);
+  }
 }

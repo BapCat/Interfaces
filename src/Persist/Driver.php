@@ -22,4 +22,6 @@ abstract class Driver {
   public abstract function isWritable(Path $path);
   
   public abstract function size(File $file);
+  
+  public abstract function modified(Path $path);
 }
