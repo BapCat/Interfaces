@@ -9,4 +9,8 @@ abstract class Directory extends Path {
   protected function getChildren() {
     return $this->loadChildren();
   }
+  
+  protected function getChild($name) {
+    return $this->driver->get($this->path . '/' . $name);
+  }
 }
