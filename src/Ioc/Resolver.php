@@ -3,6 +3,9 @@
 /**
  * An interface for custom binding resolvers.  Resolvers may
  * be used to extend the functionality of the IoC container.
+ * 
+ * @author    Corey Frenette
+ * @copyright Copyright (c) 2015, BapCat
  */
 interface Resolver {
   /**

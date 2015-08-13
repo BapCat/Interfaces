@@ -2,6 +2,9 @@
 
 /**
  * Dependency injection manager
+ * 
+ * @author    Corey Frenette
+ * @copyright Copyright (c) 2015, BapCat
  */
 abstract class Ioc implements Resolver {
   /**
