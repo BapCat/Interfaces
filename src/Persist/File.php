@@ -21,5 +21,5 @@ abstract class File extends Path {
    * 
    * @return  File  A File instance that points to the local file
    */
-  public function makeLocal();
+  public abstract function makeLocal();
 }
