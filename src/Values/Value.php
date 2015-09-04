@@ -2,13 +2,15 @@
 
 use BapCat\Propifier\PropifierTrait;
 
+use JsonSerializable;
+
 /**
  * Defines a class that represents a complex type
  * 
  * @author    Corey Frenette
  * @copyright Copyright (c) 2015, BapCat
  */
-abstract class Value {
+abstract class Value implements JsonSerializable {
   use PropifierTrait;
   
   /**
