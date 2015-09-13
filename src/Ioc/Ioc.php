@@ -24,6 +24,15 @@ abstract class Ioc implements Resolver {
   }
   
   /**
+   * Constructor
+   * 
+   * @note  This function automatically binds Ioc to itself
+   */
+  private function __construct() {
+    $this->bind(Ioc::class, $this);
+  }
+  
+  /**
    * Binds a class to an alias
    * 
    * @param  string                  $alias    An alias (eg. `db.helper`), or a real class or
