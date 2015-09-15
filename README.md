@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/BapCat/Interfaces.svg?branch=1.0.0)](https://travis-ci.org/BapCat/Interfaces)
-[![Coverage Status](https://coveralls.io/repos/BapCat/Interfaces/badge.svg?branch=1.0.0)](https://coveralls.io/r/BapCat/Interfaces?branch=1.0.0)
+[![Build Status](https://travis-ci.org/BapCat/Interfaces.svg?branch=1.1.0)](https://travis-ci.org/BapCat/Interfaces)
+[![Coverage Status](https://coveralls.io/repos/BapCat/Interfaces/badge.svg?branch=1.1.0)](https://coveralls.io/r/BapCat/Interfaces?branch=1.1.0)
 [![License](https://img.shields.io/packagist/l/BapCat/Interfaces.svg)](https://img.shields.io/packagist/l/BapCat/Interfaces.svg)
 
 # Interfaces
