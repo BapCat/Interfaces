@@ -78,13 +78,12 @@ abstract class Ioc implements Resolver {
   public abstract function addResolver(Resolver $resolver);
   
   /**
-   * Executes a method using dependency injection
+   * Executes a callable using dependency injection
    * 
-   * @param  object  $instance   An instance of an object, or a class name if calling a static method
-   * @param  string  $method     The name of the method to call on the object or class
-   * @param  array   $arguments  The arguments to pass to the method
+   * @param  callable  $call       A callable to execute using dependency injection
+   * @param  array     $arguments  The arguments to pass to the callable
    * 
-   * @return mixed   The return value of the called method
+   * @return mixed     The return value of the callable
    */
-  public abstract function execute($instance, $method, array $arguments = []);
+  public function call(callable $call, array $arguments = []);
 }
