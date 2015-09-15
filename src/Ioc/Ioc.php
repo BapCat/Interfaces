@@ -85,5 +85,5 @@ abstract class Ioc implements Resolver {
    * 
    * @return mixed     The return value of the callable
    */
-  public function call(callable $call, array $arguments = []);
+  public abstract function call(callable $call, array $arguments = []);
 }
