@@ -1,49 +1,49 @@
-<?php namespace BapCat\Interfaces\Persist;
+<?php declare(strict_types = 1); namespace BapCat\Interfaces\Persist;
 
 use BapCat\Interfaces\Exceptions\PathNotFoundException;
 use BapCat\Propifier\PropifierTrait;
 
 /**
  * Defines a class capable of writing to a file
- * 
+ *
+ * @property-read  File  $file
+ *
  * @author    Corey Frenette
- * @copyright Copyright (c) 2015, BapCat
+ * @copyright Copyright (c) 2019, BapCat
  */
 abstract class FileOutputStream {
   use PropifierTrait;
-  
+
   /**
-   * The file to write to
-   * 
-   * @var File
+   * @var  File  $file  The file to write to
    */
   private $file;
-  
+
   /**
-   * Constructor
-   * 
-   * @param  File  $file  THe file to write to
+   * @param  File  $file  The file to write to
+   *
+   * @throws  PathNotFoundException
    */
   public function __construct(File $file) {
     if(!$file->exists) {
       throw new PathNotFoundException($file);
     }
-    
+
     $this->file = $file;
   }
-  
+
   /**
    * Gets the file this writer will write to
-   * 
-   * @return File  The file
+   *
+   * @return  File  The file
    */
-  protected function getFile() {
+  protected function getFile(): File {
     return $this->file;
   }
-  
+
   /**
    * Writes an arbitrary block of data to the file
-   * 
+   *
    * @param  mixed  $data  The data to write to the file
    */
   public abstract function write($data);
